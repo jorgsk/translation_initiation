@@ -1,0 +1,49 @@
+'Gene'	'exp1'	'exp2'	'exp3'	'exp4'
+'infa_bla'	15	40	15	15
+'infa_wt'	5	17	10	10
+'infa_LII-10'	10	30	60	60
+'infa_LII-12'	7	30	60	50
+'infa_LIV-1'	5	25	40	20
+'infa_LIV-2'	40	90	120	80
+'infa_LV-1'	7	25	20	40
+'infa_LV-2'	7	25	20	40
+'gm_bla'	15	40	10	40
+'gm_wt'	40	100	40	100
+'gm_LII-10'	100	160	100	160
+'gm_LII-12'	100	162	100	170
+'gm_LIV-1'	40	90	40	90
+'gm_LIV-2'	40	92	40	95
+'gm_LV-1'	140	225	140	230
+'gm_LV-2'	100	220	100	220
+'synluc_bla'	15	40	15	15
+'synluc_wt'	40	70	20	80
+'synluc_LII-10'	100	130	60	200
+'synluc_LII-12'	100	210	80	280
+'synluc_LIV-1'	160	210	100	300
+'synluc_LIV-2'	180	215	100	260
+'synluc_LV-1'	100	160	80	280
+'synluc_LV-2'	80	80	60	200
+'celB_bla'	15	15		
+'celB_wt'	40	20		
+'celB_LII-10'	180	200		
+'celB_LII-12'	100	125		
+'celB_LIV-1'	50	100		
+'celB_LIV-2'	280	220		
+'celB_LV-1'	280	300		
+'celB_LV-2'	300	220		
+'gm-omp_bla'				
+'gm-omp_wt'	100	100	100
+'gm-omp_LII-10'	450	420	420
+'gm-omp_LII-12'	260	160	120
+'gm-omp_LIV-1'	220	180	100
+'gm-omp_LIV-2'			1000
+'gm-omp_LV-1'	280	220	180
+'gm-omp_LV-2'	400	300	240
+'infa-pelB_bla'				
+'infa-pelB_wt'	50	55	40
+'infa-pelB_LII-10'	120	120	120
+'infa-pelB_LII-12'	280	300	300
+'infa-pelB_LIV-1'	100	110	90
+'infa-pelB_LIV-2'	240	260	240
+'infa-pelB_LV-1'	100	100	50
+'infa-pelB_LV-2'	200	140	200

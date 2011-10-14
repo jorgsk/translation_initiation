@@ -1,0 +1,24 @@
+'wt'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	650	40
+'syn'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'G'	'C'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'G'	'A'	'G'	'C'	'C'	'A'	'G'	'A'	'T'	'T'	'T'	'T'	'C'	'G'	'T'	'T'	'C'	'A'	80	40
+'syn[1-6]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	190	40
+'syn[1-13]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	320	0
+'syn[1-15]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'G'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	150	0
+'syn[1-16]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'G'	'C'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	150	0
+'syn[1-30]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'G'	'C'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'G'	'A'	'G'	'C'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	320	0
+'syn[1-36]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'G'	'C'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'G'	'A'	'G'	'C'	'C'	'A'	'G'	'A'	'T'	'T'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	140	0
+'syn6 '	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	160	40
+'syn13'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	600	40
+'syn15'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'G'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	400	40
+'syn16'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'C'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	600	40
+'syn27'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'G'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	600	50
+'syn30'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'C'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	280	40
+'syn36'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'T'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	600	40
+'syn42'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'T'	'C'	'A'	300	20
+'syn6-30'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'C'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	180	0
+'A-D7'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'C'	'G'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	100	0
+'B-D5'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'C'	'G'	'A'	'A'	'T'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'A'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	100	0
+'B-B3'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'G'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'A'	'A'	'A'	'A'	'A'	'G'	'C'	'G'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	100	0
+'wt36/42'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'G'	'C'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'G'	'A'	'G'	'C'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	80	40
+'wt[1-42]'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	300	40
+'wt[1-50]'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	400	40
+'wt[1-115]'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	300	40

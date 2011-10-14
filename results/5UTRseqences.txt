@@ -1,0 +1,23 @@
+Two sets of 5'UTR sequences obtained through in silico screening.
+
+In the first set the sequences were generated pseudo-randomly to
+mimick the generation at a DNA-supply company with a 7% chance of
+change at each nucleotide position. As well, in this set the nucleotides
+C and T and positions 10 and 25 are fixed.
+
+Set 1:
+CACAUAAUAGGGGAGAGUUUAA
+AACAUAAUAAAGGAGCCUAGAA
+AACAUAAUAACGGAGCCUAGAA
+AACAAAAUAAAGGAGAUUAGAA
+AACAUUAUAACGGAGCCUAGAA
+
+In the second set the sequencs are generalted totally randomly without
+any fixed nucleotides.
+
+Set 2:
+CACAUAAAAAAGGAGGGAACAA
+AAAAAAGGUAAGGAGGUAAGCA
+CAAAAGGGUAGGGAGGAGGUAA
+AGCAAAAAGAGGGAGAAAAACA
+ACAAAAACCUAGGAGAAAAGCA

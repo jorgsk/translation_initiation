@@ -1,0 +1,54 @@
+Promoter	PY	 ITR sequence		  Element	Element location	Type 		RNA-DNA energy
+-----------------------------------------------------------------------------------
+DG146a     8.915 ATTAAAAAACCTGCTAGGAT ATTAAAAA  (0, 8)              Minus 10   -11.5
+DG122       7.33 ATAAAGGAAAACGGTCAGGT No match                                 -11.4
+DG151a      7.22 ATCAGGATACAAGAAGGTTT ATCAGGAT  (0, 8)              Minus 10   -12.3
+DG130a      7.11 ATATAGTGAACAAGGATTAA No match                                 -12.1
+N25/A1     6.605 ATCGAGAGGGACACGGCGAA No match                                 -17.3
+DG161a      6.18 ATAAAAGTACTCAGTTCAAA No match                                 -11.8
+DG131a      5.99 ATAGGTTAAAAGCCAGACAT No match                                 -12.3
+DG159      5.735 ATAACTAGGGAAAATAATAT AATAATAT  (12, 20)            Minus 10   -10.5
+                                      AAAATAAT  (10, 18)               --     
+                                      GGGAAAAT  (7, 15)                --     
+N25         5.15 ATAAATTTGAGAGAGGAGTT No match                                 -9.5
+DG162       4.51 ATGTAAATAAGGTAGGCAAT No match                                 -10.9
+DG128a     4.335 ATCCCAGTAAGGAATGATAT No match                                 -14.3
+DG121       4.19 ATACACCATAAAGAAACAGT TACACCAT  (1, 9)              Minus 10   -12.1
+DG132a      4.07 ATTCTAGTGAAAATCCCCAT GTGAAAAT  (6, 14)             Minus 10   -11.1
+DG163a      3.98 ATTATACACGGTAATCGCTT No match                                 -12.9
+DG115a      3.61 ATCCCGCTCAAGAGCAACAT AGCAACAT  (12, 20)            Minus 10   -17.9
+DG165b     3.605 ATCATCTGAAATCATAGTGT GAAATCAT  (7, 15)             Minus 10   -12.7
+DG164      3.475 ATTAAGAAAAATCTTCTATT No match                                 -7.9
+DG149a     3.375 ATAGCGGATGGTAACAGAAT AACAGAAT  (12, 20)            Minus 10   -14.7
+DG169a     3.175 ATCCAGACGAACTGGGGAAT No match                                 -17.1
+DG168a      3.01 ATCACGCAACCGGACTAACT No match                                 -18.5
+DG160a     2.885 ATATACTAGCAGCACCAATT No match                                 -14.0
+DG126       2.88 ATAAGCACACGGATACCTTT GATACCTT  (11, 19)            Minus 10   -14.6
+DG155       2.87 ATTAAAAATCCTTTCCTCTT ATTAAAAA  (0, 8)              Minus 10   -10.0
+                                      TTAAAAAT  (1, 9)                 --     
+DG127      2.855 ATCCTAGTATATGGAACTGT No match                                 -14.7
+DG135a     2.535 ATAATGCTGTGAACGCGAGT No match                                 -14.7
+DG147a      2.22 ATAATGGTCGGTTACACGAT No match                                 -14.6
+DG133       1.79 ATATCGAATTACTCAGATAT No match                                 -13.5
+DG156-3    1.605 ATCGCCGATAAATACGTAGT GATAAATA  (6, 14)             Minus 10   -14.8
+N25anti    1.535 ATCCGGAATCCTCTTCCCGG No match                                 -17.4
+DG148      1.235 ATAATTGTACATTTGAAACT TGTACATT  (5, 13)             Minus 10   -11.0
+DG125a     1.185 ATATCGTTCCCTTGACCCAT No match                                 -16.9
+DG167       1.17 ATTACATCTGCCGCCTTCCT No match                                 -18.1
+DG138a     1.065 ATCTTCTTCGTAACTGGAGT No match                                 -15.1
+DG166       0.95 ATCTAATCTCTGATAATATT GATAATAT  (11, 19)            Minus 10   -14.0
+                                      TCTAATCT  (1, 9)                 --     
+                                      CTGATAAT  (9, 17)                --     
+DG170a     0.915 ATTACTGCACATTAATGAAT TGCACATT  (5, 13)             Minus 10   -12.8
+                                      ATTAATGA  (10, 18)               --     
+DG142      0.875 ATGATTTCATCTGACTCTAT No match                                 -13.4
+DG152a      0.86 ATTACTATGCCCCATATCCT ATTACTAT  (0, 8)              Minus 10   -16.6
+DG141       0.69 ATACATTATCAACGCATGCT ATTATCAA  (4, 12)             Minus 10   -13.5
+DG154a     0.665 ATGGTTCATTTTTCCACACT TTCATTTT  (4, 12)             Minus 10   -13.2
+                                      TCCACACT  (12, 20)               --     
+DG145      0.625 ATAACCCTTGACTCCGAAAT No match                                 -17.2
+DG124a      0.44 ATCGCAACCTCCTAAATGAT CGCAACCT  (2, 10)             Minus 10   -17.8
+N25/A1anti  0.44 ATATCTCTTTCACATTATCC TTCACATT  (8, 16)             Minus 10   -13.7
+                                      CACATTAT  (10, 18)               --     
+DG137a      0.29 ATCGCTCTACTAAATGTCTT No match                                 -14.6
+

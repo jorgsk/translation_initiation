@@ -1,0 +1,198 @@
+
+* Random vs Pseudo-random:
+When generating completely random sequences there are far fewer that make the
+cut of my scrutinizer! This means that the wt sequence is perhaps alreadly
+somewhat optimized! You have read both that this is true and not true.
+
+Results to come: 
+
+* Statistics on the data sequences (how many changes compared to
+what can be expected from the binomial distribution?) PS: you already have this
+partly in your program in seq_analysis # of changes at each pos
+
+* Statistics on changes of nucleotides in (high yield) data set, and comparing
+this to changes in surviver data set, although this will reflect what nucleotide
+changes promote high binding energy
+
+* The odd collection of low-expressing sequences in the (12,38) areas! Why is it
+like that? Look for actual structure pictures
+
+* Look at the results from the (0-3,39) again. This time separate from the data
+a set that has both high binding energy And high expression! In other words, the
+upper right corner.
+
+* Quite important I think: how similar is the order of the sequences over many
+windows? Example: high correlation for window (a,b), (c,d), and (k,t). Do the
+sequences appear in the same order in all those 3? If so, it would prove that
+your method has consistency.
+
+TEST: make the - values to less than 5, like 3, and see what happens.
+Changes:
+
+* UP_C from 500 to 300
+
+
+========= new batch 2*10^6 ==========
+
+Not restricting CT:
+
+Psrandomz cutoff c[0], total 1123, top  6
+ ['Ran40195', 'CAGAUAAAAACGGAGCAAUAAA', -1.5],
+ ['Ran62445', 'ACAAUAAUAACGGAGAAAAGCA', -1.5],
+ ['Ran84588', 'ACAAUAAGAACGGAGAUAAGCA', -1.5],
+ ['Ran483365', 'AAAAUAAUAAGGGAGAAAAGCA', -1.5],
+ ['Ran4736', 'AAAAUAAGAUUGGAGGGAGGAA', -1.7],
+ ['Ran13018', 'AAAAUAAUAAAGGAGAAAGGAA', -1.7],
+
+array([[  0,   0,   8,   9,   0],
+       [157, 200, 104,   0,   0],
+       [ 77,   0,  26,  16,   0],
+       [ 72,   0,  55,  15,   0],
+       [126, 123,   0,   6,   0],
+       [ 32,   0,  39,   0,   0],
+       [ 60,   0,  73,   5,   0],
+       [111, 118,   0,  11,   0],
+       [ 44,   0,  61,  31,   0],
+       [ 59,   0,  75, 167,   0],
+       [284, 424,   0, 243,   0],
+       [  0,   0,   0,   0,   0],
+       [  0,   0,   0,   0,   0],
+       [  0,   0,   0,   0,   0],
+       [  0,   0,   0,   0,   0],
+       [303, 402,   0, 418,   0],
+       [339, 352,  70,   0,   0],
+       [101,   0,  35,  21,   0],
+       [196, 394,   0, 214,   0],
+       [  0, 190,  36,  35,   0],
+       [  0,   0,   0,  49,   0],
+       [  0,   0,   0,   0,   0]])
+
+Randomz : total 193, cutoff c[0]
+
+ ['Ran1606306', 'CACAUAAAAAAGGAGGGAACAA', -1.3999999999999999],
+ ['Ran506790', 'AAAAAAGGUAAGGAGGUAAGCA', -1.5],
+ ['Ran1015414', 'CAAAAGGGUAGGGAGGAGGUAA', -1.5],
+ ['Ran1301496', 'AGCAAAAAGAGGGAGAAAAACA', -1.5],
+ ['Ran1963820', 'ACAAAAACCUAGGAGAAAAGCA', -1.5],
+ ['Ran873774', 'ACAGAGGAACGGGAGAUAAGCA', -1.6000000000000001],
+ ['Ran998200', 'ACGAGAUUUAAGGAGCGAAACA', -1.6000000000000001],
+ ['Ran1030802', 'CACAAUAUAAGGGAGCAAGGAA', -1.6000000000000001],
+ ['Ran68154', 'ACGGAAAAAAGGGAGAUAUAAA', -1.7],
+ ['Ran184188', 'AAGCGAGUCGAGGAGGGAAGAA', -1.7],
+ ['Ran184792', 'AGCAAAAGGAAGGAGAUAACAA', -1.7],
+
+
+array([[  0,   0,   9,  47,   0],
+       [ 54,  95,  13,   0,   0],
+       [ 52,   0,  22,  26,   0],
+       [ 57,   0,  31,  28,   0],
+       [ 48, 111,   0,  14,   0],
+       [ 64,   0,  19,  16,   0],
+       [ 69,   0,  31,   7,   0],
+       [ 55,  95,   0,  17,   0],
+       [ 43,   0,  27,  39,   0],
+       [ 58,   0,  25,  35,   0],
+       [ 68,  91,   0,  22,   0],
+       [  0,   0,   0,   0,   0],
+       [  0,   0,   0,   0,   0],
+       [  0,   0,   0,   0,   0],
+       [  0,   0,   0,   0,   0],
+       [ 55, 102,   0,  36,   0],
+       [ 68,  89,  23,   0,   0],
+       [ 52,   0,  26,  14,   0],
+       [ 66, 101,   0,   9,   0],
+       [  0, 100,  21,  12,   0],
+       [  0,   0,   0,  67,   0],
+       [  0,   0,   0,   0,   0]])
+
+Restricting CT:
+
+PSrandomz Restricting CT: total 107 cutoff c[0]
+
+ ['Ran305724', 'CACAUAAUAGGGGAGAGUUUAA', -1.5],
+ ['Ran117221', 'AACAUAAUAAAGGAGCCUAGAA', -1.7],
+ ['Ran123187', 'AACAUAAUAACGGAGCCUAGAA', -1.7],
+ ['Ran147514', 'AACAAAAUAAAGGAGAUUAGAA', -1.7],
+ ['Ran413872', 'AACAUUAUAACGGAGCCUAGAA', -1.7],
+ ['Ran416507', 'AACAAAAAAAAGGAGCCUAGAA', -1.7],
+
+array([[ 0,  0,  0,  4,  0],
+       [18, 61,  4,  0,  0],
+       [ 0,  0,  0, 91,  0],
+       [ 3,  0,  1,  0,  0],
+       [17, 15,  0,  0,  0],
+       [ 0,  0,  8,  0,  0],
+       [ 3,  0,  0,  0,  0],
+       [ 7, 22,  0,  0,  0],
+       [ 2,  0,  1,  4,  0],
+       [ 6,  0, 13, 13,  0],
+       [ 9, 31,  0, 29,  0],
+       [ 0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0],
+       [14, 25,  0, 52,  0],
+       [ 1, 41,  2,  0,  0],
+       [ 0,  0, 91,  0,  0],
+       [ 4, 23,  0,  0,  0],
+       [ 0, 11, 14,  0,  0],
+       [ 0,  0,  0,  2,  0],
+       [ 0,  0,  0,  0,  0]])
+
+Randomz restricting CT: total 48 cuttoff c[0]
+
+ ['Ran1797515', 'CACAAAACCACGGAGCCUAACA', -1.5],
+ ['Ran1613783', 'CACAAUUCCCCGGAGCCUAGAA', -1.6000000000000001],
+ ['Ran906304', 'AACAAGGGAAAGGAGAUUAGAA', -1.7],
+ ['Ran269514', 'AACAGAAUCGAGGAGCCUAAAA', -1.8],
+ ['Ran620276', 'CGCGAAAGGGGGGAGGAUUAAA', -1.8],
+ ['Ran802920', 'AGCGAAGUAAGGGAGGAUUAAA', -1.8],
+ ['Ran912898', 'CACGAUAUAUAGGAGCAUUAAA', -1.8],
+
+array([[ 0,  0,  1, 22,  0],
+       [13, 29,  6,  0,  0],
+       [ 0,  0,  0, 48,  0],
+       [18,  0,  4,  0,  0],
+       [ 8, 26,  0,  6,  0],
+       [14,  0, 11,  5,  0],
+       [16,  0,  6,  1,  0],
+       [15, 14,  0, 14,  0],
+       [15,  0,  4, 16,  0],
+       [13,  0,  4,  8,  0],
+       [12, 27,  0,  9,  0],
+       [ 0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0],
+       [15, 26,  0,  7,  0],
+       [ 3, 33,  7,  0,  0],
+       [ 0,  0, 48,  0,  0],
+       [ 2, 31,  0,  0,  0],
+       [ 0, 29,  5,  0,  0],
+       [ 0,  0,  0, 12,  0],
+       [ 0,  0,  0,  0,  0]])
+
+
+------- 20 Random sequences --------
+
+CGAACGCGTCAGGAGGGGGGGC
+TACAGGCACCAGGAGCGTCGCT
+TCGCAAGTACCGGAGCTACGGT
+AAAAGAAGTTTGGAGATCCCCT
+TTAACGTATTCGGAGAGTTCCG
+CCCTTTTGTGGGGAGCGGTTTA
+GCTGCACTGGCGGAGCAGCACC
+TGTGGCGATTTGGAGAGAGTTG
+ATATCGATTCTGGAGGTGAAGA
+AGACGATATCTGGAGAAGGTGT
+ATAAAGGATGCGGAGAAAGACT
+TCCGAGCGTGAGGAGGTTAAAC
+GATGTTAACCAGGAGACCTCCC
+ATCTCATCCCCGGAGGATTTAC
+ACACGTACATGGGAGCAGATGC
+ACTTAGCCGGAGGAGCTGGTGG
+GATTATCAGTGGGAGTCAGTAA
+ACCGCTGGCCCGGAGGATCATG
+GTACCGTTGGGGGAGCTTGTAT
+TGGGGGAGCTGGGAGTGCGCGC
+

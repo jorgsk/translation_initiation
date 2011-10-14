@@ -1,0 +1,6 @@
+#Start_position	#Stop_position	#Name	#Sequence (repeat if necessary)	
+21	29	Pac	ITTAATTAA	30	34	SD	GAGGA	40	42	S-codon	ATG
+21	27	Xba	ITCTAGA	30	34	SD	GAGGA	40	42	S-codon	ATG
+21	29	Fse	IGGCCGGCC	30	34	SD	GAGGA	40	42	S-codon	ATG
+21	26	Spe	ICTAGT	30	34	SD	GAGGA	40	42	S-codon	ATG
+21	27	Age	IACCGGT	30	34	SD	GAGGA	40	42	S-codon	ATG

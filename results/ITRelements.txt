@@ -1,0 +1,52 @@
+Promoter   PY	 ITR sequence		  Element	Element location	Element type
+-------------------------------------------------------------------------------
+DG146a     8.915 ATTAAAAAACCTGCTAGGAT TAGGA     (14, 19)            Curated   
+                                      AAAAAA    (3, 9)              PolyA     
+DG122       7.33 ATAAAGGAAAACGGTCAGGT AAA       [(2, 5), (7, 10)]   PolyA     
+                                      AAAA      (7, 11)             PolyA     
+DG151a      7.22 ATCAGGATACAAGAAGGTTT TTT       (17, 20)            PolyT     
+DG130a      7.11 ATATAGTGAACAAGGATTAA No match 
+N25/A1     6.605 ATCGAGAGGGACACGGCGAA No match 
+DG161a      6.18 ATAAAAGTACTCAGTTCAAA AAAA      (2, 6)              PolyA     
+DG131a      5.99 ATAGGTTAAAAGCCAGACAT AAAA      (7, 11)             PolyA     
+DG159      5.735 ATAACTAGGGAAAATAATAT AAAA      (10, 14)            PolyA     
+N25         5.15 ATAAATTTGAGAGAGGAGTT AAA       (2, 5)              PolyA     
+                                      TTT       (5, 8)              PolyT     
+DG162       4.51 ATGTAAATAAGGTAGGCAAT AAA       (4, 7)              PolyA     
+DG128a     4.335 ATCCCAGTAAGGAATGATAT No match 
+DG121       4.19 ATACACCATAAAGAAACAGT AAA       [(9, 12), (13, 16)] PolyA     
+DG132a      4.07 ATTCTAGTGAAAATCCCCAT AAAA      (9, 13)             PolyA     
+DG163a      3.98 ATTATACACGGTAATCGCTT No match 
+DG115a      3.61 ATCCCGCTCAAGAGCAACAT No match 
+DG165b     3.605 ATCATCTGAAATCATAGTGT AAA       (8, 11)             PolyA     
+DG164      3.475 ATTAAGAAAAATCTTCTATT AAAAA     (6, 11)             PolyA     
+DG149a     3.375 ATAGCGGATGGTAACAGAAT No match 
+DG169a     3.175 ATCCAGACGAACTGGGGAAT No match 
+DG168a      3.01 ATCACGCAACCGGACTAACT No match 
+DG160a     2.885 ATATACTAGCAGCACCAATT No match 
+DG126       2.88 ATAAGCACACGGATACCTTT TTT       (17, 20)            PolyT     
+DG155       2.87 ATTAAAAATCCTTTCCTCTT AAAAA     (3, 8)              PolyA     
+                                      TTT       (11, 14)            PolyT     
+DG127      2.855 ATCCTAGTATATGGAACTGT No match 
+DG135a     2.535 ATAATGCTGTGAACGCGAGT No match 
+DG147a      2.22 ATAATGGTCGGTTACACGAT ACGAT     (15, 20)            Curated   
+DG133       1.79 ATATCGAATTACTCAGATAT No match 
+DG156-3    1.605 ATCGCCGATAAATACGTAGT AAA       (9, 12)             PolyA     
+N25anti    1.535 ATCCGGAATCCTCTTCCCGG No match 
+DG148      1.235 ATAATTGTACATTTGAAACT ATTGT     (3, 8)              Curated   
+                                      AAA       (15, 18)            PolyA     
+                                      TTT       (11, 14)            PolyT     
+DG125a     1.185 ATATCGTTCCCTTGACCCAT No match 
+DG167       1.17 ATTACATCTGCCGCCTTCCT No match 
+DG138a     1.065 ATCTTCTTCGTAACTGGAGT No match 
+DG166       0.95 ATCTAATCTCTGATAATATT No match 
+DG170a     0.915 ATTACTGCACATTAATGAAT No match 
+DG142      0.875 ATGATTTCATCTGACTCTAT TTT       (4, 7)              PolyT     
+DG152a      0.86 ATTACTATGCCCCATATCCT No match 
+DG141       0.69 ATACATTATCAACGCATGCT No match 
+DG154a     0.665 ATGGTTCATTTTTCCACACT TTTTT     (8, 13)             PolyT     
+DG145      0.625 ATAACCCTTGACTCCGAAAT AAA       (16, 19)            PolyA     
+DG124a      0.44 ATCGCAACCTCCTAAATGAT AAA       (13, 16)            PolyA     
+N25/A1anti  0.44 ATATCTCTTTCACATTATCC TTT       (7, 10)             PolyT     
+DG137a      0.29 ATCGCTCTACTAAATGTCTT AAA       (11, 14)            PolyA  
+----------------------------------------------------------------------------
