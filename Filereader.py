@@ -5,7 +5,6 @@ Formatfixer.py
 
 from IPython.Debugger import Tracer
 debug = Tracer()
-
 import csv
 import numpy as np
 import os
@@ -152,26 +151,61 @@ def NikaCombos(nafold=False):
 def Fried():
     mutantsf = os.path.join(homedir, 'sequence_data', 'Fried',
                             'utr_variants_new.csv')
-    cdsf = os.path.join(homedir, 'sequence_data', 'Fried',
-                        'xylS1000WT_for_adding_to_csv_sequence')
+    cdsf_wt = os.path.join(homedir, 'sequence_data', 'Fried',
+                        'xylS1000WT_for_adding_to_old_sequences')
 
-    cds = [l for l in open(cdsf, 'rb')][0].rsplit()[0]
+    cdsf_syn = os.path.join(homedir, 'sequence_data', 'Fried',
+                        'xylS1000syn_for_adding_to_old_sequences')
+
+    cds_wt = open(cdsf_wt, 'rb').next().strip()
+    cds_syn = open(cdsf_syn, 'rb').next().strip()
+
+    complete_out = os.path.join(homedir, 'sequence_data', 'Fried',
+                                'fully_joined_sequences.csv')
+
+    out_handle = open(complete_out, 'wb')
 
     utr = 'ACCGTGAACC'
 
-    # first do the original data
+    # the ones that should have 'cds_syn'
+    the_syns = ['wt[1-42]', 'wt[1-50]', 'wt36/42', 'wt[1-115]']
+
     seq_objects = []
+
+    # OBS!
+    # Add 'syn' which isn't in the dataset. It has 80 induced. Right?
+    syn_file = os.path.join(homedir,'sequence_data','Fried','xylS1000syn')
+    syn_seq = utr + open(syn_file, 'rb').next().rstrip('\n')[:150]
+    seq_objects.append(DNAClasses.TNobject('syn', '', syn_seq, 10, 80))
+
+    # first do the original data
     for line in open(mutantsf, 'rb'):
         splitline = line.split()
         seq_id = splitline[0].strip("\'")
         (induced, noninduced) = splitline[-2:]
         sequence = splitline[1:-2]
         seq = ''.join([s.strip("\'") for s in sequence])
-        full_seq = utr + seq + cds[:100]
+
+        # check if adding syn or wt sequence
+        if seq_id in the_syns:
+            # wt[1-50] og wt[1-115] er special cases. Dine seqs slutter ved 43
+            # (python index) 44.
+            if seq_id == 'wt[1-50]':
+                full_seq = utr + seq + cds_wt[:7] + cds_syn[7:150]
+            elif seq_id == 'wt[1-115]':
+                full_seq = utr + seq + cds_wt[:72] + cds_syn[72:150]
+            # the remaining two can just add syn
+            else:
+                full_seq = utr + seq + cds_syn[:150]
+        else:
+            full_seq = utr + seq + cds_wt[:150]
+
         # What is assumed TN start?
-        TN_start = 'auto'
+        TN_start = 10
         induced = int(induced)
         d = ''
+
+        out_handle.write('>{0}\n{1}\n'.format(seq_id, full_seq[:200]))
 
         tnObject = DNAClasses.TNobject(seq_id, d, full_seq, TN_start, induced)
         seq_objects.append(tnObject)
@@ -181,29 +215,53 @@ def Fried():
                         'new_sequences')
 
     seqdict = {}
-    for l in open(new_data, 'rb'):
-        name, utr = l.split()
-        seqdict[name] = utr
 
-    for name, utr in seqdict.items():
+    for lin in open(new_data, 'rb'):
+        #most have 3 values
+        try:
+            name, utr, induced = lin.split()
+            seqdict[name] = (utr, induced)
+        #some have 2
+        except ValueError:
+            name, utr = lin.split()
+            seqdict[name] = (utr, -1)
+
+    for name, (new_utr, induced) in seqdict.items():
+
+        # int-ify
+        induced = int(induced)
+
         # don't store the wild type
         if name.startswith('xylS') or name.startswith('naturlig'):
             continue
 
-        induced = -100
-        TN_start = 'auto' # auto = first start codon
+        if name.startswith('T7-UTR_without_His'):
+            TN_start = 71
+        elif name.startswith('T7-UTR'):
+            TN_start = 71
+        elif name.startswith('LII'):
+            TN_start = 32
+        elif name.startswith('His'):
+            TN_start = 10
+        elif name.startswith('H39'):
+            TN_start = 31
 
-        full_seq_wt = utr + seqdict['xylSwt']
-        tnObject = DNAClasses.TNobject(name, 'wt', full_seq_wt, TN_start, induced)
-        seq_objects.append(tnObject)
+        if name.endswith('_wt'):
+            full_seq = new_utr + seqdict['xylSwt'][:150][0] # WT
+            tnObject = DNAClasses.TNobject(name, '', full_seq, TN_start, induced)
+            seq_objects.append(tnObject)
 
-        full_seq_syn = utr + seqdict['xylSsyn']
-        tnObject = DNAClasses.TNobject(name, 'syn', full_seq_syn, TN_start, induced)
-        seq_objects.append(tnObject)
+        elif name.endswith('_syn'):
+            full_seq = new_utr + seqdict['xylSsyn'][:150][0] # SYN
+            tnObject = DNAClasses.TNobject(name, '', full_seq, TN_start, induced)
+            seq_objects.append(tnObject)
 
+        # write to file
+        out_handle.write('>{0}\n{1}\n'.format(name, full_seq[:200]))
+
+    out_handle.close()
     return seq_objects
 
 # Only run if used as standalone program
 if __name__ == '__main__':
     Fried()
-

@@ -1,5 +1,5 @@
 'wt'	'A'	'T'	'G'	'G'	'A'	'T'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	650	40
-'syn'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'G'	'C'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'G'	'A'	'G'	'C'	'C'	'A'	'G'	'A'	'T'	'T'	'T'	'T'	'C'	'G'	'T'	'T'	'C'	'A'	80	40
+'syn[1-42]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'G'	'C'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'G'	'A'	'G'	'C'	'C'	'A'	'G'	'A'	'T'	'T'	'T'	'T'	'C'	'G'	'T'	'T'	'C'	'A'	80	40
 'syn[1-6]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'T'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	190	40
 'syn[1-13]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'A'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	320	0
 'syn[1-15]'	'A'	'T'	'G'	'G'	'A'	'C'	'T'	'T'	'T'	'T'	'G'	'C'	'C'	'T'	'G'	'T'	'T'	'G'	'A'	'A'	'C'	'G'	'A'	'G'	'A'	'A'	'A'	'A'	'G'	'T'	'C'	'A'	'G'	'A'	'T'	'C'	'T'	'T'	'C'	'G'	'T'	'C'	'C'	'A'	150	0

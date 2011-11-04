@@ -49,7 +49,10 @@ class TNobject(DNAobject):
     translation initiation. Has DNAobject as ancestor. """
 
     def __init__(self, gene, utr, sequence, TNstart, induced):
-        name = gene+'_'+utr
+        if utr != '':
+            name = gene+'_'+utr
+        else:
+            name = gene
         DNAobject.__init__(self, name, sequence, TNstart)
         self.induced_list = induced # can be list of ints or int
         self.induced_mean = np.mean(induced)
