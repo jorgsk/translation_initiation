@@ -31,7 +31,6 @@ plt.ioff()
 from scipy import stats
 
 # Storage location for cpu-heavy dict
-storeAdr = 'sequence_data/RBSdictstore'
 
 # Rahmi's dataset begins with +1 and has translation intiation at +32. Feeding
 # first 80 elements to RBS calculator.
@@ -41,19 +40,24 @@ storeAdr = 'sequence_data/RBSdictstore'
 # NOTE RBS does not take temperature into account. wtf. aha.. the latest turner
 # lab measurements can not be extrapolated outside 37 degrees.
 
-def ReadAndSaveData():
+def ReadAndSaveData(storeAdr, dset):
     """ Reads data and adds RSB info through RSBincorp."""
     #seqs = Filereader.Rahmi104()
     #seqs = Filereader.NikaCombos()
-    seqs = Filereader.Fried()
+    if dset == 'Fried':
+        seqs = Filereader.Fried()
+
+    elif dset == 'Growing':
+        seqs = Filereader.Growing()
 
     seqs = RBSincorp(seqs)
-    cPickle.dump(seqs, open(storeAdr, 'w'))
+
+    cPickle.dump(seqs, open(storeAdr + '_' + dset, 'w'))
 
     return seqs
 
-def ReadData():
-    seqDict = cPickle.load(open(storeAdr, 'r'))
+def ReadData(storeAdr, dset):
+    seqDict = cPickle.load(open(storeAdr + '_' + dset, 'r'))
     return seqDict
 
 def RBSincorp(seqs):
@@ -703,26 +707,34 @@ def wt_to_syns(seqs):
     fig.savefig(image, format='png', dpi=200)
 
 def main():
+    # where the pickle is stored
+    dset = 'Fried'
+    #dset = 'Growing'
+
+    storeAdr = 'sequence_data/RBSdictstore'.format(dset)
+    ReadAndSaveData(storeAdr, dset)
     #ReadAndSaveData() # comment out after first run
 
-    seqs = ReadData()
+    seqs = ReadData(storeAdr, dset)
     RatePresenter(seqs)
 
     #Correlator(seqs)
 
     # get probability of fold + 
-    seqs = probability_reader(seqs, downstream_seqlen=75)
+    #seqs = probability_reader(seqs, downstream_seqlen=75)
 
     # Correlate the difference in induced with the difference in fold
-    fold_similarity(seqs)
+    #fold_similarity(seqs)
 
     # Make RBS plots for old and new, showing some correlation for 'old' set,
     # buit no correlation for 'new' set.
-    rbs_correlation(seqs)
+    #rbs_correlation(seqs)
 
     # compare the single-bp syn6, syn13, syn15, syn16, syn27, syn30, syn36, and
     # syn42, and syn6-30
-    wt_to_syns(seqs)
+    #wt_to_syns(seqs)
+
+    # 
 
 
     return seqs

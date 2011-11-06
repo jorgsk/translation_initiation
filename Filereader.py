@@ -148,6 +148,29 @@ def NikaCombos(nafold=False):
     else:
         return TNobjects
 
+def Growing():
+    fasta_file = os.path.join(homedir, 'sequence_data', 'Fried',
+                            'growing_His', 'all_growing.fa')
+    seq_objects = []
+
+    # read into memory
+    induced = -100  # not known
+    lines = open(fasta_file, 'rb').readlines()
+    for lnr, line in enumerate(lines):
+        if line.startswith('>'):
+            name = line.lstrip('>').rstrip('\n')
+            seq = lines[lnr+1].rstrip('\n')
+
+            if name.startswith('His'):
+                TNstart = 10
+            elif name.startswith('T7'):
+                TNstart = 71
+
+            tnObject = DNAClasses.TNobject(name, '', seq, TNstart, induced)
+            seq_objects.append(tnObject)
+
+    return seq_objects
+
 def Fried():
     mutantsf = os.path.join(homedir, 'sequence_data', 'Fried',
                             'utr_variants_new.csv')
@@ -264,4 +287,4 @@ def Fried():
 
 # Only run if used as standalone program
 if __name__ == '__main__':
-    Fried()
+    Growing()
