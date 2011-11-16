@@ -23,7 +23,7 @@ import math
 import cPickle
 import matplotlib.pyplot as plt
 from operator import attrgetter
-from subprocess import Popen
+from subprocess import Popen, PIPE
 
 #plt.ion()
 plt.ioff()
@@ -250,8 +250,8 @@ def probability_reader(seqs, downstream_seqlen=100):
     """
     here = os.path.dirname(os.path.realpath(__file__))
     fold_dir = os.path.join(here, 'folding_profiles')
-    fig_dir_new = os.path.join(here, 'folding_figures', 'new')
-    fig_dir_old = os.path.join(here, 'folding_figures', 'old')
+    #fig_dir_new = os.path.join(here, 'folding_figures', 'new')
+    #fig_dir_old = os.path.join(here, 'folding_figures', 'old')
 
     for seq in seqs:
 
@@ -276,12 +276,12 @@ def probability_reader(seqs, downstream_seqlen=100):
             #debug()
 
         # run hybrid-ss with 100 samples
-        cmd = ['hybrid-ss', '--suffix', 'DAT', '--tracebacks', '100',
+        cmd = ['hybrid-ss', '--suffix', 'DAT', '--tracebacks', '500',
                outfilePath]
 
         # change directory to the sec dir
         os.chdir(seqDir)
-        p = Popen(cmd)
+        p = Popen(cmd, stderr=PIPE)
         p.wait()
 
         # get the single-stranded probabilities
@@ -308,6 +308,7 @@ def probability_reader(seqs, downstream_seqlen=100):
 
         # add the binding probabilities
         seq.binding_probabilities = ss_array
+        print sum(ss_array[seq.TNstart-15:seq.TNstart+15]), seq.induced_mean
 
         # add the total binding energy
         seq.deltaG = open(seq.name+'.37.plot', 'rb').next().split()[-1]
@@ -560,6 +561,7 @@ def rbs_correlation(seqs):
 
         # spearman corr
         spman = 'Spearman: {0:.2f}, {1:.4f}'.format(*stats.spearmanr(x, y))
+        print oldnew, spman
 
         ax.set_title(spman, size=20)
 
@@ -692,7 +694,7 @@ def wt_to_syns(seqs):
 
     headr = 'Spearman: ({0:.2f}, {1:.4f})  Pearson: ({2:.2f}, {3:.4f})'.format(*both)
     axes[0].set_title(headr)
-    print headr
+    print headr, 'fold'
 
     spea = scipy.stats.pearsonr(rbsDist, indDist)
     pear = scipy.stats.spearmanr(rbsDist, indDist)
@@ -700,43 +702,61 @@ def wt_to_syns(seqs):
 
     headr ='Spearman: ({0:.2f}, {1:.4f})  Pearson: ({2:.2f}, {3:.4f})'.format(*both)
     axes[1].set_title(headr)
-    print headr
+    print headr, 'rbs'
 
     savedir = '/home/jorgsk/phdproject/5UTR/FriedrikeFolds/report/images'
     image = os.path.join(savedir, 'wt_singleSyn_correlation.png'.format(seq.name))
     fig.savefig(image, format='png', dpi=200)
 
 def main():
-    # where the pickle is stored
     dset = 'Fried'
     #dset = 'Growing'
+    #dset = 'Growing_syn' # TODO, a non-His based extension
 
+    # where the pickle is stored
     storeAdr = 'sequence_data/RBSdictstore'.format(dset)
-    ReadAndSaveData(storeAdr, dset)
-    #ReadAndSaveData() # comment out after first run
+
+    #ReadAndSaveData(storeAdr, dset)
 
     seqs = ReadData(storeAdr, dset)
-    RatePresenter(seqs)
+    #RatePresenter(seqs)
 
     #Correlator(seqs)
 
     # get probability of fold + 
-    #seqs = probability_reader(seqs, downstream_seqlen=75)
+    seqs = probability_reader(seqs, downstream_seqlen=100)
 
     # Correlate the difference in induced with the difference in fold
-    #fold_similarity(seqs)
+    fold_similarity(seqs) # for 'new' only
 
     # Make RBS plots for old and new, showing some correlation for 'old' set,
     # buit no correlation for 'new' set.
     #rbs_correlation(seqs)
 
-    # compare the single-bp syn6, syn13, syn15, syn16, syn27, syn30, syn36, and
-    # syn42, and syn6-30
+    # Fried compare the single-bp syn6, syn13, syn15, syn16, syn27, syn30,
+    # syn36, and syn42, and syn6-30
     #wt_to_syns(seqs)
 
-    # 
-
+    # Growing: compare all growth variants to the WT for TN+50, TN+75, and
+    # TN+100
+    # T7 and His vs varying extensions
 
     return seqs
 
 seqs = main()
+
+# How to design sequences for testing your ideas.
+
+# 1) If you decrease His, you can show that the fold becomes more and more
+# different, and that this correlates with the difference in expresssion. The
+# RBS calculator predicts identical initiation rates, but maybe the wt-syn fold
+# is sufficiently different that you can argue that you are taking into account
+# more than the RBS?
+#
+# 2) Alternatively you can create a whole new sequence. Take into account i)
+# codon bias ii) restriction sites iii) His-like amino acid?
+
+# Story: unintended consequences of the His-tag?
+
+# 3) You remember (von hippel?) studies of the ribosome docking mechanism. Ideas
+# about secondary structure. Maybe something more recent has come out?
