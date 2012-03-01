@@ -53,6 +53,7 @@ class TNobject(DNAobject):
             name = gene+'_'+utr
         else:
             name = gene
+
         DNAobject.__init__(self, name, sequence, TNstart)
         self.induced_list = induced # can be list of ints or int
         self.induced_mean = np.mean(induced)

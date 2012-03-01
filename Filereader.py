@@ -171,6 +171,85 @@ def Growing():
 
     return seq_objects
 
+def celB(infa2b=False):
+    """
+    Import the cel-b data
+    The data you need are:
+    tnObject = DNAClasses.TNobject(name, '', full_seq, TN_start, induced)
+
+    The most important things are the full sequence and the TN_start site.
+    """
+    raw_seqs = {}
+
+    seqs_file = os.path.join(homedir, 'celb', 'sequence_celb.alignment')
+
+    for line in open(seqs_file, 'rb'):
+
+        # stop at the comments line
+        if line.startswith('######'):
+            break
+
+        seq_id, seq, induced = line.split()
+        raw_seqs[seq_id] = (seq, induced)
+
+    # add this to all the others but remove from here
+    gene = 'infa2b_no_atg'
+    gene_seq, gene_induced = raw_seqs.pop(gene)
+
+    # if infa2b is true, you only want this sequence
+    if infa2b:
+        return gene_seq
+
+    tn_start = 32
+    # add gene_sequence and make dna-objects
+    seq_objects = []
+    for sID, (seq, induced) in raw_seqs.items():
+        full_seq = seq + gene_seq
+        induced = float(induced)
+        tnObject = DNAClasses.TNobject(sID, '', full_seq, tn_start, induced)
+
+        seq_objects.append(tnObject)
+
+    return seq_objects
+
+def designer():
+    """
+    Import the designed data
+    The data you need are:
+    tnObject = DNAClasses.TNobject(name, '', full_seq, TN_start, induced)
+
+    The most important things are the full sequence and the TN_start site.
+    """
+    raw_seqs = {}
+
+    seqs_file = os.path.join(homedir, 'celb', 'New_Fusion_Partners_RNA_DESIGN',
+                             'new_fusion_partners.txt')
+
+    for line in open(seqs_file, 'rb'):
+
+        # stop at the comments line
+        if line.startswith('######'):
+            break
+
+        seq_id, seq, induced = line.split()
+        raw_seqs[seq_id] = (seq, induced)
+
+    # add this to all the others
+    gene = 'rest_infa2b'
+    gene_seq, gene_induced = raw_seqs.pop(gene)
+
+    tn_start = 32
+    # add gene_sequence and make dna-objects
+    seq_objects = []
+    for sID, (seq, induced) in raw_seqs.items():
+        full_seq = seq + gene_seq
+        induced = float(induced)
+        tnObject = DNAClasses.TNobject(sID, '', full_seq, tn_start, induced)
+
+        seq_objects.append(tnObject)
+
+    return seq_objects
+
 def Fried():
     mutantsf = os.path.join(homedir, 'sequence_data', 'Fried',
                             'utr_variants_new.csv')
@@ -287,4 +366,4 @@ def Fried():
 
 # Only run if used as standalone program
 if __name__ == '__main__':
-    Growing()
+    celB()

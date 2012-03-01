@@ -17,7 +17,6 @@ import scipy.stats
 import Filereader
 import os
 import Workhouse
-import Energycalc
 import MyRBS
 import math
 import cPickle
@@ -49,6 +48,12 @@ def ReadAndSaveData(storeAdr, dset):
 
     elif dset == 'Growing':
         seqs = Filereader.Growing()
+
+    elif dset == 'celB':
+        seqs = Filereader.celB()
+
+    elif dset == 'designer_rna':
+        seqs = Filereader.designer()
 
     seqs = RBSincorp(seqs)
 
@@ -243,15 +248,20 @@ def SeqScreener(seqs):
 
     return newseqs
 
-def probability_reader(seqs, downstream_seqlen=100):
+def probability_reader(seqs, plot, downstream_seqlen=100):
     """
     Make folding-probability plots in the order of induction. 5' hairpin, SD and
     ATG are all highlighted
     """
     here = os.path.dirname(os.path.realpath(__file__))
     fold_dir = os.path.join(here, 'folding_profiles')
+
     #fig_dir_new = os.path.join(here, 'folding_figures', 'new')
     #fig_dir_old = os.path.join(here, 'folding_figures', 'old')
+
+    fig_dir = os.path.join(here, plot,'dstream_{0}'.format(downstream_seqlen))
+    if not os.path.isdir(fig_dir):
+        os.makedirs(fig_dir)
 
     for seq in seqs:
 
@@ -259,10 +269,11 @@ def probability_reader(seqs, downstream_seqlen=100):
         if '/' in seq.name:
             seq.name = seq.name.replace('/', '~')
 
-        # 1 dir for each fold
-        seqDir = os.path.join(fold_dir, seq.name)
-        if not os.path.isdir(seqDir):
-            os.mkdir(seqDir)
+        if fold_dir:
+            # 1 dir for each fold
+            seqDir = os.path.join(fold_dir, seq.name)
+            if not os.path.isdir(seqDir):
+                os.mkdir(seqDir)
 
         outfilePath = os.path.join(seqDir, seq.name)
         outfileHandle = open(outfilePath, 'wb')
@@ -272,11 +283,8 @@ def probability_reader(seqs, downstream_seqlen=100):
         outfileHandle.write(seq.sequence[:seq.TNstart+downstream_seqlen])
         outfileHandle.close()
 
-        #if seq.name.startswith('His'):
-            #debug()
-
-        # run hybrid-ss with 100 samples
-        cmd = ['hybrid-ss', '--suffix', 'DAT', '--tracebacks', '500',
+        # run hybrid-ss with X samples
+        cmd = ['hybrid-ss', '--suffix', 'DAT', '--tracebacks', '100',
                outfilePath]
 
         # change directory to the sec dir
@@ -314,38 +322,44 @@ def probability_reader(seqs, downstream_seqlen=100):
         seq.deltaG = open(seq.name+'.37.plot', 'rb').next().split()[-1]
 
         # don't plot unneceeasartyly
+        if not plot:
+            continue
 
-        #xvals = range(1, len(ss_array)+1)
+        xvals = range(1, len(ss_array)+1)
 
-        #fig, ax = plt.subplots()
+        fig, ax = plt.subplots()
 
-        ## plot the whole strtch
-        #ax.plot(xvals, ss_array, linewidth=2)
+        # plot the whole strtch
+        ax.plot(xvals, ss_array, linewidth=2)
 
-        #atg = seq.TNstart
-        ## plot the first 5 nucleotides, ATG-10 and ATG in green, red, and yellow
-        #ax.plot(range(1,6), ss_array[:5], linewidth=2, c='g')
-        #ax.plot(range(atg-10+1, atg+1), ss_array[atg-10:atg], linewidth=2, c='r')
-        #ax.plot(range(atg+1, atg+3+1), ss_array[atg:atg+3], linewidth=2, c='y')
+        atg = seq.TNstart
+        # plot the first 5 nucleotides, ATG-10 and ATG in green, red, and yellow
+        ax.plot(range(1,6), ss_array[:5], linewidth=2, c='g')
+        ax.plot(range(atg-15+1, atg+1), ss_array[atg-15:atg], linewidth=2, c='r')
+        ax.plot(range(atg+1, atg+3+1), ss_array[atg:atg+3], linewidth=2, c='y')
 
-        #ax.set_ylim(-0.2, 1.2)
-        #ax.set_xlim(-1, len(ss_array)+1)
+        ax.set_ylim(-0.2, 1.2)
+        ax.set_xlim(-1, len(ss_array)+1)
 
-        ## set title
-        #ax.set_title('{0} {1} {2}'.format(seq.name, seq.TNstartRate,
-                                          #seq.induced_mean))
-        #image = os.path.join(seqDir, '{0}.png'.format(seq.name))
-        #fig.savefig(image, format='png')
+        # set title
+        ax.set_title('{0} {1} {2}'.format(seq.name, seq.TNstartRate,
+                                          seq.induced_mean))
+        image = os.path.join(seqDir, '{0}.png'.format(seq.name))
+        fig.savefig(image, format='png')
 
-        ## also save in common folder
+        # FOR CELB
+        # also save in a common dir
+
+        # FOR FRIED
+        #True also save in common folder
         #if seq.name.startswith('His') or seq.name.startswith('T7')\
            #or seq.name.startswith('H39') or seq.name.startswith('LII'):
             #fig_dir = fig_dir_new
         #else:
             #fig_dir = fig_dir_old
 
-        #image2 = os.path.join(fig_dir, '{0}.png'.format(seq.name))
-        #fig.savefig(image2, format='png')
+        image2 = os.path.join(fig_dir, '{0}.png'.format(seq.name))
+        fig.savefig(image2, format='png')
 
 
     # Change back to working directory
@@ -709,7 +723,11 @@ def wt_to_syns(seqs):
     fig.savefig(image, format='png', dpi=200)
 
 def main():
-    dset = 'Fried'
+    #dset = 'Fried'
+    dset = 'celB'
+    #plot = 'celb/figures_first_batch'
+    #dset = 'designer_rna'
+    plot = 'celb/figures_design'
     #dset = 'Growing'
     #dset = 'Growing_syn' # TODO, a non-His based extension
 
@@ -719,15 +737,20 @@ def main():
     #ReadAndSaveData(storeAdr, dset)
 
     seqs = ReadData(storeAdr, dset)
+
+
     #RatePresenter(seqs)
 
+    # NOTE TO SELF seqs hold instances of DNAClasses classes.
     #Correlator(seqs)
 
     # get probability of fold + 
-    seqs = probability_reader(seqs, downstream_seqlen=100)
+    seqs = probability_reader(seqs, plot, downstream_seqlen=51)
+    debug()
 
+    # analysis part:
     # Correlate the difference in induced with the difference in fold
-    fold_similarity(seqs) # for 'new' only
+    #fold_similarity(seqs) # for 'new' only
 
     # Make RBS plots for old and new, showing some correlation for 'old' set,
     # buit no correlation for 'new' set.
