@@ -197,8 +197,9 @@ def celB(infa2b=False):
     gene_seq, gene_induced = raw_seqs.pop(gene)
 
     # if infa2b is true, you only want this sequence
+    # return without the 'cloning nucleotide'
     if infa2b:
-        return gene_seq
+        return gene_seq[3:]
 
     tn_start = 32
     # add gene_sequence and make dna-objects
@@ -209,6 +210,8 @@ def celB(infa2b=False):
         tnObject = DNAClasses.TNobject(sID, '', full_seq, tn_start, induced)
 
         seq_objects.append(tnObject)
+
+    # add the infa2b without insert?
 
     return seq_objects
 
