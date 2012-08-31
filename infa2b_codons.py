@@ -226,7 +226,7 @@ def sd_binding(seq):
 
     This ignores cost of initiation which is large.
     """
-    #Nearest-Neighbor Model, 1 M NaCl, pH 7a ∆G°37(kcal/mol)
+    #Nearest-Neighbor Model, 1 M NaCl, pH 7a \Delta G 37(kcal/mol)
     indiv = list(seq)
     neigh = [indiv[cnt] + indiv[cnt+1] for cnt in range(len(indiv)-1)]
 
@@ -304,11 +304,10 @@ def color_points(codon_freedom, TNstart, temp):
         en_set[name] = (float(energy), float(codonS))
 
     return en_set
->>>>>>> 79e5faf4f69bd5724924766c92bc9fb126d3f1da
 
 def main():
 
-#1 Get the sequecnes
+    #1 Get the sequecnes
     UTR5 = 'AACAGAAACAATAATAATGGAGTCATGAACAT' # wt UTR = 32 bp
     # NB! gene is without ATG
     # NB2: This is the 'cloning' version
@@ -319,6 +318,7 @@ def main():
 
     #2 Get codon tools of codons with more than 5% frequencyt
     codonFrame, codon_subst = SequencePred.codon_structures(threshold=0.05)
+    #codonFrame, codon_subst = SequencePred.codon_structures(threshold=0)
 
     #3 Get the codons You can change codon 1->8 (not counting ATG)
     myCodons = [infa2b[i:i+3] for i in range(0, len(infa2b), 3)]
@@ -336,6 +336,12 @@ def main():
     maxlens = [len(codon_subst[c]) for c in mutable_codons]
     # first generate all possible permutations up to 6
     #Then filter those based on the max for each codon
+    prod = 1
+    for val in maxlens:
+        prod = prod*val
+
+    print 'Nr of possible changes', prod
+    debug()
 
     TNstart = 32
     wtObj = SequenceCandidate(UTR5+'ATG'+infa2b, 'WT', codon_freedom, TNstart)
