@@ -36,15 +36,16 @@ class SequenceCandidate(object):
     def __init__(self, sequence, name, codon_freedom, TNstart):
         self.seq = sequence
         self.name = name
-        self.TNS = TNstart # translation start site
+        self.TNS = TNstart
 
-        # freedom is how many codons should be changed after ATG
+        # how many codons should be changed after ATG
         self.codon_freedom = codon_freedom
 
         # the codon score is automatically calculated as the average of the
         # codage usage bias from codon 1 to codon_freedom
         self.codon_score = self._get_codon_score()
 
+        # The amino acid sequence
         self.peptide_seq = self.get_peptide_seq()
 
         # prepare for energies
@@ -261,19 +262,83 @@ def color_points(codon_freedom, TNstart, temp):
 
     for line in open(tested_files, 'rb'):
 
-        name, seq = line.split()
+        # only some have a specified color
+        try:
+            name, seq, color = line.split('\t')
+            color = color.rstrip()
+        except ValueError:
+            name, seq = line.split()
+            color = 'c'
 
         seqobj = SequenceCandidate(seq, name, codon_freedom, TNstart)
         energy = seqobj.get_min_energy(temp, TNplus=30)
         codonS = seqobj.codon_score
 
-        en_set[name] = (float(energy), float(codonS))
+        en_set[name] = (float(energy), float(codonS), color)
 
     return en_set
 
+def get_energies_for_paper():
+    """
+    Get energies and codon score for pelB sequence variants. Write to file.
+    """
+
+    out_file = open('celb/energy_and_codonscore/energy_codon_score.txt', 'wb')
+
+    out_file.write('Name\tMin_energy\tCodon_score\n')
+
+    temp = 30
+    TNstart = 32
+
+    # the 5UTR plus atg
+    UTR_atg = 'AACAGAAACAATAATAATGGAGTCATGAACATATG'
+
+    # the first 82 nt of celB (we're only going to go up to 69
+    celB_82 = 'CCCAGCATAAGCCCATTTGCCGGCAAGCCGGTCGATCCGGACCGTCTTGTCAATATCGACGCCCT'
+
+    # infa2b
+    infa2b = 'TGCGATCTGCCGCAGACCCATAGCCTGGGTAGCCGTCGCACCCTGATGCTGCTGGCACAGATG'
+
+    # the variants have different lenghts of celB
+    celb_lens = [3, 5, 8, 10, 15, 20, 23, 25, 30, 38, 69]
+
+    codon_freedom = 8
+
+    for cBlen in celb_lens:
+        name = 'celB' +'_{0}'.format(cBlen)
+
+        obj = SequenceCandidate(UTR_atg + celB_82[:cBlen] + infa2b, 'name',
+                                codon_freedom, TNstart)
+
+        en_score = obj.get_min_energy(temp, TNplus=30)
+        codon_score = obj.codon_score
+
+        out_file.write('\t'.join([name, str(en_score), str(codon_score)]) + '\n')
+
+    out_file.close()
+
+def write_energies_again(tested_data, wtObj, pelbObj):
+
+    out_file = open('celb/energy_and_codonscore/energy_codon_score_THE_REST.txt', 'wb')
+
+    out_file.write('Name\tMin_energy\tCodon_score\n')
+
+    temp=30
+
+    for name, (en_score, codon_score, color) in tested_data.items():
+
+        out_file.write('\t'.join([name, str(en_score), str(codon_score)]) + '\n')
+
+    out_file.close()
+
+
 def main():
 
-#1 Get the sequecnes
+    # missed 2 energies for the paper
+    #get_energies_for_paper()
+    #debug()
+
+    #1 Get the sequecnes
     UTR5 = 'AACAGAAACAATAATAATGGAGTCATGAACAT' # wt UTR = 32 bp
     # NB! gene is without ATG
     # NB2: This is the 'cloning' version
@@ -282,7 +347,7 @@ def main():
     # was for cloning purposes when used together with constructs)
     infa2b = 'TGCGATCTGCCGCAGACCCATAGCCTGGGTAGCCGTCGCACCCTGATGCTGCTGGCACAGATG'
 
-    #2 Get codon tools of codons with more than 5% frequencyt
+    #2 Get codon tools of codons with more than 5% frequency
     codonFrame, codon_subst = SequencePred.codon_structures(threshold=0.05)
 
     #3 Get the codons You can change codon 1->8 (not counting ATG)
@@ -302,9 +367,16 @@ def main():
     # first generate all possible permutations up to 6
     #Then filter those based on the max for each codon
 
+    # wild type ifn-a2b
     TNstart = 32
     wtObj = SequenceCandidate(UTR5+'ATG'+infa2b, 'WT', codon_freedom, TNstart)
     wtEn, wtScore = wtObj.get_min_energy(temp, TNplus=30), wtObj.codon_score
+
+    pelB = 'AAATACCTATTGCCTACGGCAGCCGCTGGATTGTTATTACTCGCGGCCCAGCCGGCCATGTGCGATCTGCCG'
+    # the pelB variant
+    TNstart = 32
+    pelbObj = SequenceCandidate(UTR5+'ATG'+pelB, 'WT', codon_freedom, TNstart)
+    pelbEn, pelbScore = pelbObj.get_min_energy(temp, TNplus=30), pelbObj.codon_score
 
     #pepseq = wtObj.get_peptide_seq()
 
@@ -321,12 +393,46 @@ def main():
     #pepseqs = set([d.get_peptide_seq() for d in seqObjects.values()])
 
     # Get some color points for the extra tested data
-    tested_data = color_points(codon_freedom, TNstart, temp)
+    #tested_data = color_points(codon_freedom, TNstart, temp)
 
-    plot_results(ens, rare_cods, wtEn, wtScore, extra_data=tested_data)
+    # Write more energy+codon_usage for the paper
+    #write_energies_again(tested_data, wtObj, pelbObj)
+
+    #keepers = ['AAA1/2', 'AAA2/2', 'HP1', 'HP2', 'HP3', 'NativeCodons']
+    # screen for the ones you want
+    #for k, v in tested_data.items():
+        #if k not in keepers:
+            #tested_data.pop(k)
+
+    # get the data that was selected based on energy and codon usage
+    tested2 = 'celb/sequenced_stuff_for_plotting.txt'
+    tested_data2 = get_tested(tested2, codon_freedom, TNstart, UTR5, infa2b)
+
+    plot_results(ens, rare_cods, wtEn, wtScore, extra_data=tested_data2)
 
     # sequence_selecter
     #seq_select(seqObjects, codon_freedom)
+
+def get_tested(path_to_seqs, codon_freedom, TNstart, UTR5, infa2b):
+
+    en_set = {}
+    temp = 30
+
+    for line in open(path_to_seqs, 'rb'):
+        if line.startswith('S'):
+            name, seq, color = line.split()
+
+        # add UTR and downstream gene
+        full_seq = UTR5 + seq + infa2b[24:]
+
+        seqobj = SequenceCandidate(full_seq, name, codon_freedom, TNstart)
+        energy = seqobj.get_min_energy(temp, TNplus=30)
+        codonS = seqobj.codon_score
+
+        en_set[name] = (float(energy), float(codonS), color)
+
+    return en_set
+
 
 def seq_select(seqObjs, codon_freedom):
     """
@@ -380,37 +486,56 @@ def seq_select(seqObjs, codon_freedom):
 
     outhandle_high.close()
 
-
 def plot_results(ens, rare_cods, wtEn, wtScore, extra_data=False):
 
     fig0, ax0 = plt.subplots()
     ax0.scatter(ens, rare_cods)
 
-    # Add the wt with a red dot
-    ax0.scatter([wtEn], [wtScore], color='r')
+    # Add the WT with a red dot
+    ax0.scatter([wtEn], [wtScore], color='DarkRed')
+
+    #ax0.annotate('WT',
+            #xy=(wtEn, wtScore), xytext=(-20,20),
+            #textcoords='offset points', ha='right', va='bottom',
+            #bbox=dict(boxstyle='round, pad=0.5', fc='DarkRed', alpha=0.9),
+            #arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0'),
+                #size=12)
 
     # add tested data, with little labels
-    for name, (energy, codon_score) in extra_data.items():
+    for name, (energy, codon_score, colr) in extra_data.items():
         # add the point
-        ax0.scatter([energy], [codon_score], color='g')
+        ax0.scatter([energy], [codon_score], color=colr)
 
-        # add the label
+        #add the label
         ax0.annotate(name,
-                xy=(energy, codon_score), xytext=(-20,20),
+                xy=(energy, codon_score), xytext=(-20,-20),
                 textcoords='offset points', ha='right', va='bottom',
-                bbox=dict(boxstyle='round, pad=0.5', fc='g', alpha=0.9),
-                arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0'))
+                bbox=dict(boxstyle='round, pad=0.5', fc=colr, alpha=0.9),
+                arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0'),
+                    size=12)
 
+    #ax0.set_xlabel('Folding energy of ribosome binding site (kcal/mol)', size=22)
+    #ax0.set_ylabel('Codon usage index', size=22)
 
-    ax0.set_xlabel('Energy')
-    ax0.set_ylabel('Codon Rarity Index')
+    plt.setp(ax0.get_xticklabels(), fontsize=14)
 
-    #ax0.set_title('WT infa2b has non-rare codons and tight fold compared to'\
-             #' all possible synonymous mutation variants')
-    ax0.set_title('Mean and median: {0} {1}'.format(np.mean(ens), np.median(ens)))
+    ax0.set_ylim(1.75, 4.5)
+    ax0.set_xlim(-20, -2)
 
-    fig, ax = plt.subplots()
-    ax.hist(ens, bins=50)
+    fig0.set_dpi(300)
+
+    fig0.set_size_inches(18,12)
+
+    #fig, ax = plt.subplots()
+    #ax.hist(ens, bins=50)
+    fig_dir = '/home/jorgsk/phdproject/5UTR/MutationCorrelation/celb/scatter_fig'
+
+    for formt in ['pdf', 'eps', 'png', 'tiff']:
+
+        name = 'for_poster.' + formt
+
+        fig0.savefig(os.path.join(fig_dir, name), transparent=True,
+                     format=formt, dpi=300)
 
 
 if __name__ == '__main__':
