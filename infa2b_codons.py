@@ -219,6 +219,40 @@ def get_fullseqs(UTR5, infa2b, maxlens, mutable_codons,
 
     return full_seqs
 
+def sd_binding(seq):
+    """
+    Scan all hexamers for a match with the anti-shine dalgarno
+    AGGAGG -> look for match to TCCTCC. This is rna-rna data. need to get some
+    look-up tables.
+
+    This ignores cost of initiation which is large.
+    """
+    #Nearest-Neighbor Model, 1 M NaCl, pH 7a ∆G°37(kcal/mol)
+    indiv = list(seq)
+    neigh = [indiv[cnt] + indiv[cnt+1] for cnt in range(len(indiv)-1)]
+
+    rna_rna = {
+        'AA' : -0.93,
+        'AU' : -1.10,
+        'UA' : -1.33,
+        'CU' : -2.08,
+        'CA' : -2.11,
+        'GU' : -2.24,
+        'GA' : -2.35,
+        'CG' : -2.36,
+        'GG' : -3.26,
+        'GC' : -3.42}
+
+    energ = sum([rna_rna[nei] for nei in neigh])
+
+    return energ
+    # Ignoring symmetty and stuff
+    #terminal AU            4.09 (0.22) 
+    #symmetry            0.45d (0.04)
+                #0.43 0
+    #(self-complementary)
+     #Numbers in parentheses are uncertainties for parameters. b Calcu-
+
 def get_ens(seq_path, temp, seq_names):
     """
     Rely on the fact that energies were written like this: 0,1,...,N-1,N
@@ -277,6 +311,7 @@ def color_points(codon_freedom, TNstart, temp):
         en_set[name] = (float(energy), float(codonS), color)
 
     return en_set
+>>>>>>> 79e5faf4f69bd5724924766c92bc9fb126d3f1da
 
 def get_energies_for_paper():
     """
