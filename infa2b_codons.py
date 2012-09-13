@@ -227,7 +227,7 @@ def sd_binding(seq):
 
     This ignores cost of initiation which is large.
     """
-    #Nearest-Neighbor Model, 1 M NaCl, pH 7a ∆G°37(kcal/mol)
+    #Nearest-Neighbor Model, 1 M NaCl, pH 7a deltaG 37(kcal/mol)
     indiv = list(seq)
     neigh = [indiv[cnt] + indiv[cnt+1] for cnt in range(len(indiv)-1)]
 
@@ -311,11 +311,42 @@ def color_points(codon_freedom, TNstart, temp):
         en_set[name] = (float(energy), float(codonS), color)
 
     return en_set
->>>>>>> 79e5faf4f69bd5724924766c92bc9fb126d3f1da
+
+def get_more_energies_for_paper():
+    """
+    Get energies and codon score for pelB random variants. Write to file.
+    """
+
+    # folding temperature
+    temp = 30
+
+    codon_freedom = 8
+    TNstart = 32
+
+    in_path = 'random_celb'
+
+    out_handle = open('random_celb_output.txt', 'wb')
+
+    seq_objects = []
+    for line in open(in_path):
+        name, seq = line.split()
+
+        obj = SequenceCandidate(seq.upper(), name, codon_freedom, TNstart)
+        en, cScore = obj.get_min_energy(temp, TNplus=30), obj.codon_score
+
+        seq_objects.append((name, en, cScore))
+        debug()
+
+        out_handle.write('\t'.join([name, str(en), str(cScore)]) + '\n')
+
+    out_handle.close()
+
+    # make objects
+
 
 def get_energies_for_paper():
     """
-    Get energies and codon score for pelB sequence variants. Write to file.
+    Get energies and codon score for celB sequence variants. Write to file.
     """
 
     out_file = open('celb/energy_and_codonscore/energy_codon_score.txt', 'wb')
@@ -345,8 +376,17 @@ def get_energies_for_paper():
         obj = SequenceCandidate(UTR_atg + celB_82[:cBlen] + infa2b, 'name',
                                 codon_freedom, TNstart)
 
+
         en_score = obj.get_min_energy(temp, TNplus=30)
         codon_score = obj.codon_score
+
+        if cBlen == 23:
+            print cBlen
+            print obj.seq
+            print en_score
+            print codon_score
+
+        continue
 
         out_file.write('\t'.join([name, str(en_score), str(codon_score)]) + '\n')
 
@@ -369,9 +409,11 @@ def write_energies_again(tested_data, wtObj, pelbObj):
 
 def main():
 
-    # missed 2 energies for the paper
-    #get_energies_for_paper()
-    #debug()
+    # some more energies
+    get_energies_for_paper()
+    # random cel b energies and codon score
+    #get_more_energies_for_paper()
+    debug()
 
     #1 Get the sequecnes
     UTR5 = 'AACAGAAACAATAATAATGGAGTCATGAACAT' # wt UTR = 32 bp
