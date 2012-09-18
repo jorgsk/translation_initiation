@@ -305,7 +305,43 @@ def color_points(codon_freedom, TNstart, temp):
 
     return en_set
 
+def random_lib_scores():
+    """
+    En and codon score for randomized seqs
+    """
+
+    # folding temperature
+    temp = 30
+
+    codon_freedom = 8
+    TNstart = 32
+
+    in_path = 'random_celb'
+
+    out_handle = open('random_celb_output.txt', 'wb')
+
+    seq_objects = []
+    for line in open(in_path):
+        name, seq = line.split()
+
+        wtObj = SequenceCandidate(seq.upper(), name, codon_freedom, TNstart)
+        wtEn, wtScore = wtObj.get_min_energy(temp, TNplus=30), wtObj.codon_score
+        debug()
+
+        seq_objects.append((name, wtEn, wtScore))
+
+        out_handle.write('\t'.join([name, wtEn, wtScore]))
+
+    out_handle.close()
+
+    # make objects
+
 def main():
+
+    # XXX get the scores for Veronika's random library
+    random_lib_scores()
+
+    debug()
 
     #1 Get the sequecnes
     UTR5 = 'AACAGAAACAATAATAATGGAGTCATGAACAT' # wt UTR = 32 bp
@@ -341,7 +377,7 @@ def main():
         prod = prod*val
 
     print 'Nr of possible changes', prod
-    debug()
+
 
     TNstart = 32
     wtObj = SequenceCandidate(UTR5+'ATG'+infa2b, 'WT', codon_freedom, TNstart)
