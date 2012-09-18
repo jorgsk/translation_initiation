@@ -738,7 +738,6 @@ def main():
 
     seqs = ReadData(storeAdr, dset)
 
-
     #RatePresenter(seqs)
 
     # NOTE TO SELF seqs hold instances of DNAClasses classes.
@@ -746,11 +745,10 @@ def main():
 
     # get probability of fold + 
     seqs = probability_reader(seqs, plot, downstream_seqlen=51)
-    debug()
 
     # analysis part:
     # Correlate the difference in induced with the difference in fold
-    #fold_similarity(seqs) # for 'new' only
+    fold_similarity(seqs) # for 'new' only
 
     # Make RBS plots for old and new, showing some correlation for 'old' set,
     # buit no correlation for 'new' set.
