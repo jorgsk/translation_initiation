@@ -39,7 +39,7 @@ from scipy import stats
 # NOTE RBS does not take temperature into account. wtf. aha.. the latest turner
 # lab measurements can not be extrapolated outside 37 degrees.
 
-def ReadAndSaveData(storeAdr, dset):
+def ReadAndSaveData(storeAdr, dset, RBS):
     """ Reads data and adds RSB info through RSBincorp."""
     #seqs = Filereader.Rahmi104()
     #seqs = Filereader.NikaCombos()
@@ -55,7 +55,8 @@ def ReadAndSaveData(storeAdr, dset):
     elif dset == 'designer_rna':
         seqs = Filereader.designer()
 
-    seqs = RBSincorp(seqs)
+    if RBS:
+        seqs = RBSincorp(seqs)
 
     cPickle.dump(seqs, open(storeAdr + '_' + dset, 'w'))
 
@@ -734,11 +735,13 @@ def main():
     # where the pickle is stored
     storeAdr = 'sequence_data/RBSdictstore'.format(dset)
 
-    #ReadAndSaveData(storeAdr, dset)
+    RBS = False # If true, add do RBS calculation
+    ReadAndSaveData(storeAdr, dset, RBS)
 
     seqs = ReadData(storeAdr, dset)
 
     #RatePresenter(seqs)
+    debug()
 
     # NOTE TO SELF seqs hold instances of DNAClasses classes.
     #Correlator(seqs)
